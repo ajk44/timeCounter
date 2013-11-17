@@ -1,9 +1,35 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p><i class="icon-star icon-spin"></i> installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+<div class="container" stage ng-click="stageClick()">
+  </div>
+<div class="alert">
+  Click anywhere, and then click again 15 seconds later.
 </div>
+<div class="container">
+  <div class="row">
+    <div class="span4">
+      <h4>Last Time</h4>
+      <div class="row">
+        <div class="span2 alert alert-info">
+          <div class="text-center" style="font-size:30px">{{display.ms | number:0}} ms</div>
+        </div>
+      </div>
+     </div>
+    <div class="span8">
+      <button class="btn pull-right" ng-click="clearLog()">Clear Table</button>
+      <h4>Your times (ms)</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="t in display.times">
+            <td>{{t.ms | number:0}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
