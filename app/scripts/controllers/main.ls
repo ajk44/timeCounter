@@ -11,12 +11,15 @@ angular.module 'timeCounterApp'
     const timing = 'timing'
 
     state = $scope.state = {}
+    $scope.lightOn = false
 
     reset = $scope.reset = ->
       display.ms = '?'
       display.times = []
       state.phase = idle
       state.startTime = 0
+      $scope.lightOn = false
+      
       
 
     reset!
@@ -28,6 +31,7 @@ angular.module 'timeCounterApp'
       if $scope.state.phase == idle
         'idling'
         display.ms = '?'
+        $scope.lightOn = false
       else
         ''
 
@@ -51,11 +55,14 @@ angular.module 'timeCounterApp'
     counting = $scope.counting = ->
       state.phase = timing
       state.startTime = Date.now!
+      $scope.lightOn = true
       $timeout $scope.updateTime, 500
     
     stop = $scope.stop = ->
       logTimes!
       state.phase = idle
+      $scope.lightOn = false
+      
       
 
     click = ->
@@ -63,7 +70,7 @@ angular.module 'timeCounterApp'
       | idle => counting!
       | timing => stop!
       | otherwise $scope.messages = -> 'invalid phase'
-      console.log state.phase
+      console.log "LightOn", $scope.lightOn, "Phase", state.phase
 
     $scope.stageClick = ->
       click! 
