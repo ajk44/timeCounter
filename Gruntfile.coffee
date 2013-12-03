@@ -60,7 +60,7 @@ module.exports = (grunt) ->
           '<%= yeoman.app %>/{,*/}*.html'
           '<%= yeoman.tmp %>/styles/{,*/}*.css'
           '{<%= yeoman.tmp %>,<%= yeoman.app %>}/scripts/{,*/}*.js'
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= yeoman.app %>/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
 
     "regex-replace":
@@ -214,7 +214,7 @@ module.exports = (grunt) ->
           src: [
             '<%= yeoman.dist %>/scripts/{,*/}*.js'
             '<%= yeoman.dist %>/styles/{,*/}*.css'
-            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+            #'<%= yeoman.dist %>/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
             '<%= yeoman.dist %>/styles/fonts/*'
           ]
 
@@ -233,18 +233,18 @@ module.exports = (grunt) ->
       dist:
         files: [
           expand: true
-          cwd: '<%= yeoman.app %>/images'
+          cwd: '<%= yeoman.app %>/img'
           src: '{,*/}*.{png,jpg,jpeg}'
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.dist %>/img'
         ]
 
     svgmin:
       dist:
         files: [
           expand: true
-          cwd: '<%= yeoman.app %>/images'
+          cwd: '<%= yeoman.app %>/img'
           src: '{,*/}*.svg'
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.dist %>/img'
         ]
 
     cssmin: {}
@@ -290,23 +290,13 @@ module.exports = (grunt) ->
           dest: '<%= yeoman.dist %>'
           src: [
             '*.{ico,png,txt}'
-            '.htaccess',
-
-            'bower_components/jquery/jquery.js'
-
-            'bower_components/angular*/**/*.js'
-            '!bower_components/angular*/**/*.min.js'
-            '!bower_components/angular*/angular-mocks/*.js'
-            'bower_components/font-awesome/font/*'
-            'bower_components/es5-shim/es5-shim.js'
-            'bower_components/json3/lib/json3.min.js'
-            'images/{,*/}*.{gif,webp}'
+            'img/{,*/}*.{gif,webp}'
             'styles/fonts/*'
           ]
         ,
           expand: true,
-          cwd: '<%= yeoman.tmp %>/images'
-          dest: '<%= yeoman.dist %>/images'
+          cwd: '<%= yeoman.tmp %>/img'
+          dest: '<%= yeoman.dist %>/img'
           src: [
             'generated/*'
           ]
