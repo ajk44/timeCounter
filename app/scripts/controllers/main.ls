@@ -56,6 +56,7 @@ angular.module 'timeCounterApp'
       state.phase = timing
       state.startTime = Date.now!
       $scope.lightOn = true
+      display.ms = '?'
       $timeout $scope.updateTime, 500
     
     stop = $scope.stop = ->
