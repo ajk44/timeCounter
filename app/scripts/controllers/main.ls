@@ -38,7 +38,7 @@ angular.module 'timeCounterApp'
     $scope.updateTime = ->
       if state.phase == timing
         timeCounting = Date.now! - state.startTime
-        if timeCounting >= 30000
+        if timeCounting >= 150000
           stop!
         else
           $timeout $scope.updateTime, 20
