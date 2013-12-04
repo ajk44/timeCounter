@@ -1,8 +1,18 @@
-<h4>Click the red light to turn it on, and then click again to turn it off.</h4>
-<div ng-click="stageClick()">
-  <div ng-hide="lightOn"> <img src="img/offLight.png"/></div>
-  <div ng-show="lightOn"> <img src="img/onLight.png"/></div>
-  </div>
+<h4>Click the red light to turn it on, and then click
+  <span class="dropdown pointer">
+    <a class="dropdown-toggle .btn">{{targetText()}}</a>
+    <ul class="dropdown-menu">
+      <li ng-repeat="targetChoice in targetChoices">
+        <a ng-click="setTarget($index)">{{targetChoices[$index][0]}}</a>
+      </li>
+    </ul>
+  </span>
+  to turn it off.
+</h4>
+<div ng-click="stageClick()" class="text-center">
+  <div ng-hide="lightOn"> <img class="pointer" src="img/offLight.png"/></div>
+  <div ng-show="lightOn"> <img class="pointer" src="img/onLight.png"/></div>
+</div>
 
 <div class="container">
   <div class="row">
