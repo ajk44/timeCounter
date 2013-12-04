@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'timeCounterApp'
-  .controller 'MainCtrl', <[$scope $timeout $window $routeParams]> ++ ($scope, $timeout, $window, $routeParams) ->
+  .controller 'MainCtrl', <[$scope $timeout $window $routeParams $location]> ++ ($scope, $timeout, $window, $routeParams, $location) ->
 
     $scope.targetChoices = [
       ["again", 0]
@@ -16,9 +16,9 @@ angular.module 'timeCounterApp'
     ]
 
     $scope.getTargetIndex = (secs) ->
-      console.log "secs=#{secs}"
+      # console.log "secs=#{secs}"
       for t, i in $scope.targetChoices
-        console.log t,i
+        # console.log t,i
         if secs <= t.1
           return i
       return $scope.targetChoices.length - 1
@@ -38,9 +38,9 @@ angular.module 'timeCounterApp'
     $scope.standalone = -> $window.top == $window.self
 
     $scope.setTarget = (index) ->
-      console.log "index = #{index}"
+      # console.log "index = #{index}"
       $scope.targetIndex = index
-      $scope.target = $scope.targetChoices[index].1
+      $location.url ($scope.target = $scope.targetChoices[index].1)
 
     $scope.setTarget $scope.targetIndex
 
@@ -105,7 +105,7 @@ angular.module 'timeCounterApp'
       | idle => counting!
       | timing => stop!
       | otherwise $scope.messages = -> 'invalid phase'
-      console.log "LightOn", $scope.lightOn, "Phase", state.phase
+      # console.log "LightOn", $scope.lightOn, "Phase", state.phase
 
     $scope.stageClick = ->
       click!
